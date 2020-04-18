@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <navbar></navbar>
-    <main class="py-4">
+    <main class="section">
       <router-view></router-view>
     </main>
   </div>
@@ -12,7 +12,6 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 

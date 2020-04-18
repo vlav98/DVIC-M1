@@ -1,32 +1,27 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+  <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="container">
-      <router-link to="/" class="navbar-brand">DVIC-APP</router-link>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto"></ul>
-        <ul class="navbar-nav ml-auto">
+      <div class="navbar-brand">
+        <router-link to="/" class="navbar-item">DVIC-APP</router-link>
+      </div>
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+      <div class="navbar-menu" id="main-navbar">
+        <ul class="navbar-end">
           <template v-if="user.loggedIn">
-            <div class="nav-item">{{user.data.displayName}}</div>
-            <li class="nav-item">
-              <a class="nav-link" @click.prevent="signOut">Sign out</a>
+            <div class="navbar-item">{{user.data.displayName}}</div>
+            <li class="navbar-item">
+              <a class="navbar-item" @click.prevent="signOut">Sign out</a>
             </li>
           </template>
           <template v-else>
-            <li class="nav-item">
+            <li class="navbar-item">
               <router-link to="login" class="nav-link">Login</router-link>
             </li>
-            <li class="nav-item">
+            <li class="navbar-item">
               <router-link to="register" class="nav-link">Register</router-link>
             </li>
           </template>
