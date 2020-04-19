@@ -107,12 +107,12 @@ export default {
             let new_error
             let number
             if(
-                this.firstName !== "" && this.lastName !== "" && this.company !== "" && this.email !== ""
+                this.form.firstName !== "" && this.form.lastName !== "" && this.form.company !== "" && this.form.email !== ""
             ) {
                 number = 1
                 this.errors.splice(0)
             } else {
-                new_error = "Your field(s) not to be empty"
+                new_error = "Your field(s) should not to be empty"
                 if(!this.errors.includes(new_error)) {
                     this.errors.push(new_error)
                 }
@@ -122,11 +122,11 @@ export default {
                     const rootReference = firebase.database().ref();
                     const alertsReference = rootReference.child("clients");
                     alertsReference.push({
-                        firstName: this.firstName,
-                        lastName: this.lastName,
-                        company: this.company,
-                        email: this.email,
-                        phone: this.phone,
+                        firstName: this.form.firstName,
+                        lastName: this.form.lastName,
+                        company: this.form.company,
+                        email: this.form.email,
+                        phone: this.form.phone,
                         createdAt: Date.now(),
                     })
                     this.firstName = ""
