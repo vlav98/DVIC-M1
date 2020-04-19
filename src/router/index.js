@@ -4,13 +4,14 @@ import Home from '../views/Home.vue'
 import Login from '../components/Login'
 import Register from '../components/Register'
 import Dashboard from '../components/Dashboard'
+import NewProject from '../views/projects/Create'
+import NewClient from '../views/clients/Create'
 
 Vue.use(VueRouter)
 
   const routes = [
   {
     path: '/',
-    name: 'Home',
     component: Home
   },
   {
@@ -20,6 +21,16 @@ Vue.use(VueRouter)
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/new-project',
+    name: 'new-project',
+    component: NewProject
+  },
+  {
+    path: '/new-client',
+    name: 'new-client',
+    component: NewClient
   },
   {
     path: '/login',
