@@ -3,8 +3,10 @@
         <div class="box">
         <div class="title">New project</div>
         <div class="content">
-        <div v-if="error" class="alert alert-danger">{{error}}</div>
-        <form action="#" @submit.prevent="submit">
+        <div class="alert alert-danger" v-for="(error, k) in errors" :key="k">
+            {{error}}
+        </div>
+        <form action="#" @submit.prevent="_create_project">
             <div class="field">
                 <div class="control">
                     <input 
@@ -20,7 +22,7 @@
             </div>
             <div class="field">
                 <div class="control">
-                <input
+                <textarea
                     id="description"
                     type="text"
                     class="input"
@@ -44,6 +46,11 @@
                 />
                 </div>
             </div>
+            <div class="field">
+                <div class="control">
+                <button type="submit" class="button is-primary">Submit</button>
+                </div>
+            </div>
         </form>
         </div>
         </div>
@@ -56,10 +63,13 @@ export default {
     name: "create-project",
     data() {
         return {
-            title: '',
-            description: '',
-            price: '',
-            errors: [],
+            form: {
+                title: '',
+                description: '',
+                budget: '',
+                clients: [],
+            },
+            errors: []
         }
     },
     methods: {
@@ -67,12 +77,12 @@ export default {
             let new_error
             let number
             if(
-                this.title !== "" && this.description !== ""
+                this.form.title !== "" && this.form.description !== "" && this.form.budget !== ""
             ) {
                 number = 1
                 this.errors.splice(0)
             } else {
-                new_error = "Your field(s) not to be empty"
+                new_error = "Your field(s) should not to be empty"
                 if(!this.errors.includes(new_error)) {
                     this.errors.push(new_error)
                 }
@@ -82,12 +92,15 @@ export default {
                     const rootReference = firebase.database().ref();
                     const alertsReference = rootReference.child("projects");
                     alertsReference.push({
-                        title: this.title,
-                        description: this.description,
-                        date: Date.now(),
+                        title: this.form.title,
+                        description: this.form.description,
+                        budget: this.form.budget,
+                        createdAt: Date.now(),
                     })
                     this.title = ""
                     this.description = ""
+                    this.budget = ""
+                    this.clients = ""
             }
         }
     },
