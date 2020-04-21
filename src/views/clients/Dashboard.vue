@@ -1,6 +1,13 @@
 <template>
     <div class="fullscreen container">
-        <h1 class="title">Clients</h1>
+        <div class="columns">
+            <div class="column">
+                <h1 class="title">Clients</h1>
+            </div>
+            <div class="column">
+                <router-link to="new-client" class="button is-primary">Add a new client</router-link>
+            </div>
+        </div>
         <div v-if="this.is_loaded === true">
             <loader />
         </div>
