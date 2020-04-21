@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import firebase from "firebase"
 import Home from '../views/Home.vue'
 import Login from '../components/Login'
 import Register from '../components/Register'
 import Dashboard from '../components/Dashboard'
 import NewProject from '../views/projects/Create'
+import Clients from '../views/clients/Dashboard'
 import NewClient from '../views/clients/Create'
 
 Vue.use(VueRouter)
@@ -23,14 +25,19 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/new-project',
-    name: 'new-project',
-    component: NewProject
+    path: '/clients',
+    name: 'clients',
+    component: Clients
   },
   {
     path: '/new-client',
     name: 'new-client',
     component: NewClient
+  },
+  {
+    path: '/new-project',
+    name: 'new-project',
+    component: NewProject
   },
   {
     path: '/login',
@@ -45,7 +52,7 @@ Vue.use(VueRouter)
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: Dashboard
+    component: Dashboard,
   }
 ]
 
@@ -55,4 +62,13 @@ const router = new VueRouter({
   routes
 })
 
+/* router.beforeEach((to, from, next) => {
+  const currentUser = firebase.auth().currentUser;
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  if (requiresAuth && !currentUser) next('login');
+  else if (!requiresAuth && currentUser) next('dashboard');
+  else next();
+})
+ */
 export default router
