@@ -118,22 +118,24 @@ export default {
                 }
             }
             if (number == 1) {
-                    // Firebase references
-                    const rootReference = firebase.database().ref();
-                    const alertsReference = rootReference.child("clients");
-                    alertsReference.push({
-                        firstName: this.form.firstName,
-                        lastName: this.form.lastName,
-                        company: this.form.company,
-                        email: this.form.email,
-                        phone: this.form.phone,
-                        createdAt: Date.now(),
-                    })
-                    this.firstName = ""
-                    this.lastName = ""
-                    this.company = ""
-                    this.email = ""
-                    this.phone = ""
+                // Firebase references
+                const rootReference = firebase.database().ref();
+                const alertsReference = rootReference.child("clients");
+                alertsReference.push({
+                    firstName: this.form.firstName,
+                    lastName: this.form.lastName,
+                    company: this.form.company,
+                    email: this.form.email,
+                    phone: this.form.phone,
+                    createdAt: Date.now(),
+                })
+                this.firstName = ""
+                this.lastName = ""
+                this.company = ""
+                this.email = ""
+                this.phone = ""
+                this.$router.replace('clients');
+
             }
         }
     },
